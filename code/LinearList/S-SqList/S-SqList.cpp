@@ -6,7 +6,9 @@ typedef struct {
 	int length;
 }SqList;
 
-
+/*
+初始化顺序表
+*/
 void InitList(SqList& L) {
 	//将所有数据初始化，防止出现“脏数据”，可省略
 	for (int i = 0; i < maxSize; i++) {
@@ -15,6 +17,9 @@ void InitList(SqList& L) {
 	L.length = 0;
 }
 
+/*
+在指定位置插入数据
+*/
 bool insertList(SqList &L ,int i,int e) {
 	// 判断i的范围是否有效
 	if (i<1||i>L.length+1) {
@@ -38,6 +43,9 @@ bool insertList(SqList &L ,int i,int e) {
 	return true;
 }
 
+/*
+删除指定位置的值
+*/
 bool deleteList(SqList& L, int i, int &e) {
 	// 判断i的范围是否有效
 	if (i<1 || i>L.length + 1) {
@@ -57,7 +65,30 @@ bool deleteList(SqList& L, int i, int &e) {
 	return true;
 }
 
+/*
+按位查找，时间复杂度O(1)
+*/
+int get(SqList L, int i) {
+	return L.data[i - 1];
+}
 
+
+/*
+按值查找，时间复杂度O(n)
+*/
+int locate(SqList L, int e) {
+	for (int i = 0; i < L.length; i++) {
+		if (L.data[i] == e) {
+			return i+1;
+			break;
+		}
+	}
+	return 0;
+}
+
+/*
+打印顺序表
+*/
 void print(SqList L) {
 	for (int i = 0; i < L.length; i++) {
 		printf("%d", L.data[i]);
@@ -67,12 +98,15 @@ void print(SqList L) {
 int main() {
 	SqList L;
 	InitList(L);
+	
 	insertList(L, 1, 1);
 	insertList(L, 2, 2);
-	int e=0;
-	deleteList(L, 1, e);
-	printf("%d\n", e);
-	
-	print(L);
+	//int e=0;
+	//deleteList(L, 1, e);
+	//printf("%d\n", e);
+	printf("%d",locate(L, 1));
+
+
+	//print(L);
 	return 0;
 }

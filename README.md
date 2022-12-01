@@ -238,9 +238,9 @@ Tips：
 
 - 代码实现：
 
-[静态分配](./code/LinearList/S-SqList/S-SqList.sln)
+​		[静态分配](./code/LinearList/S-SqList/S-SqList.sln)
 
-[动态分配](./code/LinearList/D-SqList/D-SqList.sln)
+​		[动态分配](./code/LinearList/D-SqList/D-SqList.sln)
 
 
 
@@ -287,7 +287,7 @@ $$
 
 ### 删除
 
-```c
+```c++
 bool deleteList(SqList& L, int i, int &e) {
 	// 判断i的范围是否有效
 	if (i<1 || i>L.length + 1) {
@@ -321,3 +321,275 @@ $$
 n p + ( n - 1 ) p + ( n - 2 ) p + \cdots \cdots + 1 \cdot p = \frac { n ( n + 1 ) } { 2 } \frac { 1 } { n + 1 } = \frac { n } { 2 }
 $$
 ==平均时间复杂度 = O(n)==
+
+
+
+### 查找
+
+```c++
+/*
+按位查找,时间复杂度O(1)
+*/
+int get(SqList L, int i) {
+	return L.data[i - 1];
+}
+
+
+/*
+按置查找,时间复杂度O(n)
+*/
+int locate(SqList L, int e) {
+	for (int i = 0; i < L.length; i++) {
+		if (L.data[i] == e) {
+			return i+1;
+			break;
+		}
+	}
+	return 0;
+}
+```
+
+==注意==：C语言中，==结构体的比较不能直接用 “== ”==
+
+
+
+## 链表
+
+### 单链表
+
+#### 定义
+
+![](./image/tmpF8A.png)
+
+
+
+```c++
+typedef struct LNode {
+	int data;
+	int* next;
+}LNode,*LinkList;
+
+//LNode 强调的是节点
+//LinkList 强调的是链表  
+```
+
+
+
+- 代码实现：
+
+​		[带头指针](./code/LinearList/LinkListWithHead/LinkListWithHead.sln)
+
+​		[不带头指针](./code/LinearList/LinkListWithoutHead/LinkListWithoutHead.sln)
+
+
+
+#### 插入
+
+- 按位序插入（带头结点）
+
+  平均时间复杂度：==O(n)==
+
+  ```c++
+  /*
+  在第i个位置插入e O(n)
+  */
+  bool insert(LinkList &L, int i, int e) {
+  	//判断i的合法性
+  	if (i < 1) {
+  		return false;
+  	}
+  	//使用p指向L的头节点
+  	LNode* p=L;
+  	//用j代表第几个节点
+  	int j = 0;
+  	//找到第i-1个节点
+  	while (p != NULL && j < i-1) {
+  		p = p->next;
+  		j++;
+  	}
+      
+  	//如果超出链表尾部
+  	if (p == NULL) {
+  		return false;
+  	}
+      
+  	//申请节点内存
+  	LNode* s = (LNode *)malloc(sizeof(LNode));
+  
+  	//插入节点
+  	s->data = e;
+  	s->next = p->next;
+  	p->next = s;
+  	return true;
+  
+  }
+  ```
+
+- 按位序插入（不带头结点）
+
+  平均时间复杂度：==O(n)==
+
+  ```c++
+  /*
+  在第i个位置插入e
+  */
+  bool insert(LinkList& L, int i, int e) {
+  	//判断i的合法性
+  	if (i < 1) {
+  		return false;
+  	}
+  	//判断i=1是的情况
+  	if (i == 1) {
+  		LNode* s = (LNode*)malloc(sizeof(LNode));
+  		s->data = e;
+  		s->next = L;
+  		L = s;
+  		return true;
+  	}
+  	//使用p指向L的头节点
+  	LNode* p = L;
+  	//用j代表第几个节点
+  	int j = 1;
+  	//找到第i个节点
+  	while (p != NULL && j < i - 1) {
+  		p = p->next;
+  		j++;
+  	}
+  	//如果超出链表尾部
+  	if (p == NULL) {
+  		return false;
+  	}
+  
+  	//申请节点内存
+  	LNode* s = (LNode*)malloc(sizeof(LNode));
+  
+  	//插入节点
+  	s->data = e;
+  	s->next = p->next;
+  	p->next = s;
+  	return true;
+  }
+  ```
+
+  
+
+#### 删除
+
+- 按位序删除（带头结点）
+
+  平均时间复杂度：==O(n)==
+
+  ```c++
+  /*
+  删除第i个位置并返回e,O(n)
+  */
+  bool deleteList(LinkList& L, int i, int& e) {
+  	if (i < 1) {
+  		return false;
+  	}
+  	LNode* p = L;
+  	//用j代表第几个节点
+  	int j = 0;
+  	//找到第i-1个节点
+  	while (p != NULL && j < i - 1) {
+  		p = p->next;
+  		j++;
+  	}
+  	//如果超出链表尾部
+  	if (p == NULL || p->next==NULL) {
+  		return false;
+  	}
+  	LNode* q = p->next;
+  	e = q->data;
+  	p->next = q->next;
+  	free(q);
+  	return true;
+  }
+  ```
+
+- 删除指定节点并返回e
+
+  平均时间复杂度：==O(1)==
+
+  ```c++
+  /*
+  删除指定节点并返回e, O(1)
+  */
+  bool deleteNode(LNode *p, int& e) {
+  	if (p == NULL) {
+  		return false;
+  	}
+  	LNode* q = p->next;
+  	p->data = q->data;
+  	p->next = q->next;
+  	free(q);
+  	return true;
+  }
+  ```
+
+
+
+#### 查找
+
+- 按位查找
+
+  ```c++
+  /*
+  按位查找
+  */
+  LNode* getElem(LinkList L, int i) {
+  	if (i < 0) {
+  		return NULL;
+  	}
+  	LNode* p;
+  	int j = 0;
+  	p = L;
+  	while (p != NULL && j < i)
+  	{
+  		p = p->next;
+  		j++;
+  		
+  	}
+  	return p;
+  }
+  ```
+
+- 按值查找
+
+  ```c++
+  /*
+  按值查找
+  */
+  LNode* locatelElem(LinkList L, int e) {
+  	LNode* p = L->next;
+  	while (p->data != e&&p!=NULL) {
+  		p = p->next;
+  	}
+  	return p;
+  }
+  ```
+
+- 求表的长度
+
+  ```C++
+  int Length(LinkList L) {
+  	int len = 0; //统计表长
+  	LNode * p = L;
+  	while (p->next !=NULL){
+  		p = p->next;
+  		len++;
+  	}
+  	return len;
+  }
+  ```
+
+  
+
+
+
+
+
+
+
+
+
