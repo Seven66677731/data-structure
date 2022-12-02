@@ -102,6 +102,71 @@ bool deleteList(LinkList& L, int i, int& e) {
 	return true;
 }
 
+/*
+尾插法，O(n)
+*/
+LinkList listTailInsert(LinkList& L) {
+	//初始化链表
+	//initLinkList(L);
+	
+	//尾指针指向L
+	LNode* p = L;
+
+	//输入值x
+	int x;
+	scanf_s("%d", &x);
+	//x=-1时停止输入
+	while (x != -1) {
+		if (p == NULL) {
+			LNode* s = (LNode*)malloc(sizeof(LNode));
+			s->data = x;
+			s->next = NULL;
+			L = s;
+			p = L;
+		}
+		else
+		{
+			//新建结点
+			LNode* s = (LNode*)malloc(sizeof(LNode));
+			s->data = x;
+			p->next = s;
+			p = s;
+		}
+
+		scanf_s("%d", &x);
+	}
+	p->next = NULL;
+	return L;
+}
+
+
+/*
+头插法，O(n)
+*/
+LinkList listHeadInsert(LinkList& L) {
+	//初始化链表
+	initLinkList(L);
+
+	//输入值x
+	int x;
+	scanf_s("%d", &x);
+	//x=-1时停止输入
+	while (x != -1) {
+		//新建结点
+		LNode* s = (LNode*)malloc(sizeof(LNode));
+		//设置新建结点的值为x
+		s->data = x;
+		//新建结点的next为L
+		s->next = L;
+		//L指向新建结点
+		L = s;	
+		scanf_s("%d", &x);
+	}
+	return L;
+}
+
+
+
 
 //求表的长度
 int Length(LinkList L) {
@@ -115,19 +180,42 @@ int Length(LinkList L) {
 }
 
 
+LinkList reserve(LinkList L) {
+
+	LinkList reserveList;
+	initLinkList(reserveList);
+
+	LNode* p = L;
+	while (p != NULL) {
+		LNode* s = (LNode*)malloc(sizeof(LNode));
+		s->data = p->data;
+		s->next = reserveList;
+		reserveList = s;
+		p = p->next;
+	}
+
+	return reserveList;
+}
+
 int main() {
 	LinkList  L;
 	initLinkList(L); 
-	insert(L, 1, 1);
-	insert(L, 2, 2);
-	insert(L, 3, 3);
-	//printf("%d", Length(L));
+	//insert(L, 1, 1);
+	//insert(L, 2, 2);
+	//insert(L, 3, 3);
+	////printf("%d", Length(L));
 
-	//print(L);
 
-	int e = 0;
-	deleteList(L, 3, e);
-	printf("%d", e);
+
+	//int e = 0;
+	//deleteList(L, 3, e);
+	//printf("%d", e);
+
+	//L=listHeadInsert(L);
+	print(L);
+	L = reserve(L);
+
+	print(L);
 
 	return 0;
 }

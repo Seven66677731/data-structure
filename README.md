@@ -585,9 +585,194 @@ typedef struct LNode {
 
   
 
+#### 头插法
+
+- 不带头节点
+
+  ```c++
+  /*
+  头插法，O(n)
+  */
+  LinkList listHeadInsert(LinkList& L) {
+  	//初始化链表
+  	//initLinkList(L);
+  	//p指针指向头节点
+  	LNode* p = L;
+  	//输入值x
+  	int x;
+  	scanf_s("%d", &x);
+  	//x=-1时停止输入
+  	while (x != -1) {
+  		//新建结点
+  		LNode* s = (LNode*)malloc(sizeof(LNode));
+  		//设置新建结点的值为x
+  		s->data = x;
+  		//新建结点的next为原来头指针的next
+  		s->next = p->next;
+  		//头节点的next为新建结点
+  		p->next = s;
+  		scanf_s("%d", &x);
+  	}
+  	return L;
+  }
+  ```
+
+- 不带头节点
+
+  ```c++
+  /*
+  头插法，O(n)
+  */
+  LinkList listHeadInsert(LinkList& L) {
+  	//初始化链表
+  	initLinkList(L);
+  
+  	//输入值x
+  	int x;
+  	scanf_s("%d", &x);
+  	//x=-1时停止输入
+  	while (x != -1) {
+  		//新建结点
+  		LNode* s = (LNode*)malloc(sizeof(LNode));
+  		//设置新建结点的值为x
+  		s->data = x;
+  		//新建结点的next为L
+  		s->next = L;
+  		//L指向新建结点
+  		L = s;	
+  		scanf_s("%d", &x);
+  	}
+  	return L;
+  }
+  
+  ```
+
+  
+
+#### 尾插法
+
+- 带头节点
+
+  ```c++
+  /*
+  尾插法，O(n)
+  */
+  LinkList listTailInsert(LinkList &L) {
+  	//初始化链表
+  	//initLinkList(L);
+  	//尾指针指向头节点
+  	LNode * p = L;
+  	//输入值x
+  	int x;
+  	scanf_s("%d", &x);
+  	//x=-1时停止输入
+  	while (x!=-1){
+  		//新建结点
+  		LNode* 	s=(LNode*)malloc(sizeof(LNode));
+  		//设置新建结点的值为x
+  		s->data = x;
+  		//尾指针的next为新建结点
+  		p->next = s;
+  		//尾指针指向新建结点
+  		p = s;
+  		scanf_s("%d",& x);
+  	}
+  	//尾指针的next指向NULL
+  	p->next = NULL;
+  	return L;
+  }
+  ```
+
+- 不带头结点
+
+  ```c++
+  /*
+  尾插法，O(n)
+  */
+  LinkList listTailInsert(LinkList& L) {
+  	//初始化链表
+  	//initLinkList(L);
+  	
+  	//尾指针指向L
+  	LNode* p = L;
+  
+  	//输入值x
+  	int x;
+  	scanf_s("%d", &x);
+  	//x=-1时停止输入
+  	while (x != -1) {
+  		if (p == NULL) {
+  			LNode* s = (LNode*)malloc(sizeof(LNode));
+  			s->data = x;
+  			s->next = NULL;
+  			L = s;
+  			p = L;
+  		}
+  		else
+  		{
+  			//新建结点
+  			LNode* s = (LNode*)malloc(sizeof(LNode));
+  			s->data = x;
+  			p->next = s;
+  			p = s;
+  		}
+  
+  		scanf_s("%d", &x);
+  	}
+  	p->next = NULL;
+  	return L;
+  }
+  ```
 
 
 
+#### 逆置链表
+
+- 带头结点
+
+  ```c++
+  /*
+  使用头插法，逆置链表
+  */
+  LinkList reserve(LinkList L) {
+  	LinkList reserveList;
+  	initLinkList(reserveList);
+  
+  	LNode* r = reserveList;
+  	
+  	LNode* p = L->next;
+  	while (p!= NULL) {
+  		LNode* s = (LNode*)malloc(sizeof(LNode));
+  		s->data = p->data;
+  		s->next = r->next;
+  		r->next = s;
+  		p = p->next;
+  	}
+  	return reserveList;
+  }
+  ```
+
+- 不带头结点
+
+  ```c++
+  LinkList reserve(LinkList L) {
+  
+  	LinkList reserveList;
+  	initLinkList(reserveList);
+  
+  	LNode* p = L;
+  	while (p != NULL) {
+  		LNode* s = (LNode*)malloc(sizeof(LNode));
+  		s->data = p->data;
+  		s->next = reserveList;
+  		reserveList = s;
+  		p = p->next;
+  	}
+  	return reserveList;
+  }
+  ```
+
+  
 
 
 
