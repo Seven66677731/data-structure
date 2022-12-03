@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "SqStack.exe"
+			"path" : "SqStcak1.exe"
 		},
 		{
-			"path" : "SqStack.pdb"
+			"path" : "SqStcak1.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -56,7 +56,7 @@
 			]
 		}
 	],
-	"id" : "SqStack::@6890427a1f51a3e7e1df",
+	"id" : "SqStcak1::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -76,8 +76,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "SqStack",
-	"nameOnDisk" : "SqStack.exe",
+	"name" : "SqStcak1",
+	"nameOnDisk" : "SqStcak1.exe",
 	"paths" : 
 	{
 		"build" : ".",

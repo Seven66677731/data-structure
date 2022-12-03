@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "F:/datastruct/data-structure/test/cmake-build-debug",
-		"source" : "F:/datastruct/data-structure/test"
+		"build" : "D:/Study/0/data-structure/data-structure/test/cmake-build-debug",
+		"source" : "D:/Study/0/data-structure/data-structure/test"
 	},
 	"version" : 
 	{

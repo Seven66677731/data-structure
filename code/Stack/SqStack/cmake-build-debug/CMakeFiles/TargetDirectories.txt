@@ -1,3 +1,3 @@
-F:/datastruct/data-structure/code/Stack/SqStack/cmake-build-debug/CMakeFiles/SqStack.dir
-F:/datastruct/data-structure/code/Stack/SqStack/cmake-build-debug/CMakeFiles/edit_cache.dir
-F:/datastruct/data-structure/code/Stack/SqStack/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/Study/0/data-structure/data-structure/code/Stack/SqStcak/cmake-build-debug/CMakeFiles/SqStcak1.dir
+D:/Study/0/data-structure/data-structure/code/Stack/SqStcak/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Study/0/data-structure/data-structure/code/Stack/SqStcak/cmake-build-debug/CMakeFiles/rebuild_cache.dir
