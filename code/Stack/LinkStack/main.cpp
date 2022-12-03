@@ -113,6 +113,7 @@ int main(){
 	push(S, 1);
 	push(S, 2);
 	push(S, 3);
+	push(S, 4);
 
 
 	print(S);
