@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Install script for directory: F:/datastruct/data-structure/code/Stack/SqStack
+=======
+# Install script for directory: D:/Study/0/data-structure/data-structure/code/Stack/SqStack
+>>>>>>> 436a53d7310de41020015b23b4458bb9858a5ea1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +49,9 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
 file(WRITE "F:/datastruct/data-structure/code/Stack/SqStack/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+=======
+file(WRITE "D:/Study/0/data-structure/data-structure/code/Stack/SqStack/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> 436a53d7310de41020015b23b4458bb9858a5ea1
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

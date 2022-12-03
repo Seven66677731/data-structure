@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 D:\Software\CLion\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=D:/Software/CLion/bin/ninja/win/ninja.exe -G Ninja -S F:\datastruct\data-structure\code\Stack\SqStack -B F:\datastruct\data-structure\code\Stack\SqStack\cmake-build-debug
+=======
+"D:\Programming\C\CLion 2022.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=D:/Programming/C/CLion 2022.3/bin/ninja/win/ninja.exe" -G Ninja -S D:\Study\0\data-structure\data-structure\code\Stack\SqStack -B D:\Study\0\data-structure\data-structure\code\Stack\SqStack\cmake-build-debug
+>>>>>>> 436a53d7310de41020015b23b4458bb9858a5ea1
 -- The C compiler identification is GNU 11.2.0
 -- The CXX compiler identification is GNU 11.2.0
 -- Detecting C compiler ABI info
@@ -13,4 +17,8 @@ D:\Software\CLion\bin\cmake\win\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_M
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
+<<<<<<< HEAD
 -- Build files have been written to: F:/datastruct/data-structure/code/Stack/SqStack/cmake-build-debug
+=======
+-- Build files have been written to: D:/Study/0/data-structure/data-structure/code/Stack/SqStack/cmake-build-debug
+>>>>>>> 436a53d7310de41020015b23b4458bb9858a5ea1
