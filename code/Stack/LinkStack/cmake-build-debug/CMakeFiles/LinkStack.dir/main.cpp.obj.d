@@ -1,0 +1,30 @@
+CMakeFiles/LinkStack.dir/main.cpp.obj: \
+ F:\datastruct\data-structure\code\Stack\LinkStack\main.cpp \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/corecrt.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/_mingw.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/_mingw_mac.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/_mingw_secapi.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/vadefs.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/_mingw_off_t.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/swprintf.inl \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
+ D:/Software/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/stdlib.h \
+ D:/Software/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cstdlib \
+ D:/Software/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
+ D:/Software/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/os_defines.h \
+ D:/Software/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+ D:/Software/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/pstl_config.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/stdlib.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
+ D:/Software/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed/limits.h \
+ D:/Software/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed/syslimits.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/limits.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/crtdefs.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/malloc.h \
+ D:/Software/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/mm_malloc.h \
+ D:/Software/CLion/bin/mingw/x86_64-w64-mingw32/include/errno.h \
+ D:/Software/CLion/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/std_abs.h

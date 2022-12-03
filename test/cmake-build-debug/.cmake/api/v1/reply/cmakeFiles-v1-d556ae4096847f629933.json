@@ -767,8 +767,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "D:/Study/0/data-structure/data-structure/code/Stack/LinkStack/cmake-build-debug",
-		"source" : "D:/Study/0/data-structure/data-structure/code/Stack/LinkStack"
+		"build" : "D:/Study/0/data-structure/data-structure/test/cmake-build-debug",
+		"source" : "D:/Study/0/data-structure/data-structure/test"
 	},
 	"version" : 
 	{
