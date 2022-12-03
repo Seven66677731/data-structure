@@ -1,5 +1,5 @@
 # ninja log v5
-0	156	6917813390622018	CMakeFiles/LinkStack.dir/main.cpp.obj	55479737228acf0
-159	369	6917813392703419	LinkStack.exe	6135d866f7f236c8
 4	173	6917820008021106	CMakeFiles/LinkStack.dir/main.cpp.obj	754a5bada9a30aea
 175	400	6917820010265321	LinkStack.exe	6135d866f7f236c8
+3	142	6917872932730541	CMakeFiles/LinkStack.dir/main.cpp.obj	754a5bada9a30aea
+144	333	6917872934606450	LinkStack.exe	6135d866f7f236c8

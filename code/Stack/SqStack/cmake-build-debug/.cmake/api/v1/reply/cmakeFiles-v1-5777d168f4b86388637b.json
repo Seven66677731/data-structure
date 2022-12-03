@@ -767,8 +767,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "D:/Study/0/data-structure/data-structure/code/Stack/SqStcak/cmake-build-debug",
-		"source" : "D:/Study/0/data-structure/data-structure/code/Stack/SqStcak"
+		"build" : "D:/Study/0/data-structure/data-structure/code/Stack/SqStack/cmake-build-debug",
+		"source" : "D:/Study/0/data-structure/data-structure/code/Stack/SqStack"
 	},
 	"version" : 
 	{
