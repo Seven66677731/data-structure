@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/Study/0/data-structure/data-structure/code/Stack/LinkStack/cmake-build-debug",
-		"source" : "D:/Study/0/data-structure/data-structure/code/Stack/LinkStack"
+		"build" : "F:/datastruct/data-structure/code/Stack/LinkStack/cmake-build-debug",
+		"source" : "F:/datastruct/data-structure/code/Stack/LinkStack"
 	},
 	"version" : 
 	{
