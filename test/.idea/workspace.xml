@@ -18,6 +18,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a4ffd261-623b-474c-8d54-1f4a8eea2b96" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/../code/Stack/LinkStack/cmake-build-debug/.cmake/api/v1/reply/cache-v2-eec5d2a15d00779e92a8.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../code/Stack/LinkStack/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-87f26f45fc72dcf730b5.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../code/Stack/LinkStack/cmake-build-debug/.cmake/api/v1/reply/index-2022-12-03T15-27-11-0347.json" afterDir="false" />
@@ -100,6 +101,10 @@
       <change beforePath="$PROJECT_DIR$/../code/Stack/LinkStack/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../code/Stack/LinkStack/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../code/Stack/LinkStack/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../code/Stack/LinkStack/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../code/Stack/SqStack/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../code/Stack/SqStack/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+>>>>>>> e890fd97bd67bf5f6d066d22b6244a8357ceba22
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +139,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+<<<<<<< HEAD
   <component name="RunManager" selected="CMake Application.test">
+=======
+  <component name="RunManager">
+>>>>>>> e890fd97bd67bf5f6d066d22b6244a8357ceba22
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -164,7 +173,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1670083022396</updated>
+<<<<<<< HEAD
       <workItem from="1670083136507" duration="79000" />
+=======
+      <workItem from="1670083023626" duration="48000" />
+      <workItem from="1670083136799" duration="10000" />
+>>>>>>> e890fd97bd67bf5f6d066d22b6244a8357ceba22
     </task>
     <servers />
   </component>
