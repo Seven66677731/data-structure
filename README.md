@@ -208,7 +208,7 @@ Tips：
 
 ​	④函数名和参数的形式、命名都可改变（Reference：严蔚敏版《数据结构》） 
 
-​	⑤[什么时候要传入引用==“&”== —— 对参数的修改结果需要==“带回来”==](./code/LinearList/addressCharacter/addressCharacter.sln)
+​	⑤[什么时候要传入引用==“&”== —— 对参数的修改结果需要==“带回来”==](./code/LinearList/addressCharacter/main.cpp)
 
 
 
@@ -238,9 +238,9 @@ Tips：
 
 - 代码实现：
 
-​		[静态分配](./code/LinearList/S-SqList/S-SqList.sln)
+​		[静态分配](./code/LinearList/SSqList/main.cpp)
 
-​		[动态分配](./code/LinearList/D-SqList/D-SqList.sln)
+​		[动态分配](./code/LinearList/DSqList/main.cpp)
 
 
 
@@ -377,9 +377,9 @@ typedef struct LNode {
 
 - 代码实现：
 
-​		[带头指针](./code/LinearList/LinkListWithHead/LinkListWithHead.sln)
+​		[带头指针](./code/LinearList/LinkListWithHead/main.cpp)
 
-​		[不带头指针](./code/LinearList/LinkListWithoutHead/LinkListWithoutHead.sln)
+​		[不带头指针](./code/LinearList/LinkListWithoutHead/main.cpp)
 
 
 
@@ -789,7 +789,7 @@ typedef struct DNode{
 
 代码实现：
 
-[双链表](./code/LinearList/DLinkList/DLinkList.sln)
+[双链表](./code/LinearList/DLinkList/main.cpp)
 
 
 
@@ -902,3 +902,238 @@ bool deleteNextDNode(DNode* p) {
 但是二者的==存储结构==不同，顺序表采用顺序存储(特点，带来的优点缺点)；链表采用链式存储…（特 点、导致的优缺点）。 
 
 由于采用不同的存储方式实现，因此==基本操作==的实现效率也不同。当初始化时…；当插入一个数据元 素时…；当删除一个数据元素时…；当查找一个数据元素时...
+
+
+
+
+
+# 三、栈和队列
+
+
+
+## 栈
+
+### 定义
+
+![](./image/tmp53DB.png)
+
+栈（Stack）是只允许在==一端进行插入或删除操作==的线性表
+
+特点：==后进先出== Last In First Out （==LIFO==）
+
+==n个不同元素进栈==，出栈元素==不同排列的个数==为
+$$
+\frac { 1 } { n + 1 } C _ { 2 n } ^ { n }
+$$
+ 上述公式称为卡特兰（Catalan）数，可采用数学归纳法证 明（不要求掌握）
+
+
+
+### 顺序栈 
+
+- 代码实现
+
+  [顺序栈](./code/Stack/SqStack/main.cpp)
+
+![](./image/tmp71E0.png)
+
+#### 定义
+
+```c++
+typedef struct {
+	int data[maxSize];
+	int top;
+}SqStcak;
+```
+
+
+
+#### 进栈
+
+```c++
+bool push(SqStcak &S,int e) {	
+	//栈满
+	if(S.top==maxSize){
+
+		return false;
+	}
+	//元素入栈,再栈顶指针先加一
+	//S.top++;
+	S.data[S.top++] = e;
+	return true;
+}
+```
+
+
+
+#### 出栈
+
+```c++
+bool pop(SqStcak& S, int& e) {
+	//栈空
+	if (isEmpty(S)) {
+		return false;
+	}
+	//栈顶指针减一,再栈顶元素出栈,
+	e = S.data[--S.top];
+	return true;
+}
+```
+
+
+
+#### 获取栈顶元素
+
+```c++
+bool getTop(SqStcak S, int& e) {
+	//栈空
+	if (isEmpty(S)) {
+		return false;
+	}
+	//栈顶元素出栈,再栈顶指针减一
+	e = S.data[S.top];
+	return true;
+}
+```
+
+
+
+
+
+### 链栈
+
+![](./image/tmp6A2C.png)
+
+
+
+- 代码实现
+
+​		[顺序栈](./code/Stack/LinkStack/main.cpp)
+
+#### 定义
+
+```c++
+typedef struct LNode {
+	int data;
+ 	LNode* next;
+} * LinkStack;
+```
+
+
+
+#### 带头结点
+
+```c++
+/*
+带头结点
+*/
+bool initLinkStack(LinkStack& S) {
+	S = (LNode*)malloc(sizeof(LNode));
+	if (S == NULL) {
+		return false;
+	}
+	S->next = NULL;
+	return true;
+}
+
+bool isEmpty(LinkStack S) {
+	return S->next == NULL;
+}
+
+bool push(LinkStack& S,int e) {
+	LNode* p = (LNode*)malloc(sizeof(LNode));
+	if (p == NULL) {
+		return false;
+	}
+	p->next = S->next;
+	p->data = e;
+	S->next = p;
+
+	return true;
+}
+
+
+bool pop(LinkStack& S, int &e) {
+	if (isEmpty(S)) {
+		return false;
+	}
+
+	LNode* p =S->next;
+
+	S->next = S->next->next;
+	e = p->data;
+
+	return true;
+}
+
+void print(LinkStack S) {
+	int e;
+	while (pop(S,e))
+	{
+		printf("%d", e);
+	}
+}
+```
+
+
+
+#### 不带头节点
+
+```c++
+/*
+不带头节点
+*/
+bool initLinkStack(LinkStack& S) {
+	S = NULL;
+	return true;
+}
+
+bool isEmpty(LinkStack S) {
+	return S == NULL;
+}
+
+bool push(LinkStack& S,int e) {
+	LNode* p = (LNode*)malloc(sizeof(LNode));
+	if (p == NULL) {
+		return false;
+	}	
+	p->data = e;
+	p->next=S;
+	
+	S = p;
+
+	return true;
+}
+
+bool pop(LinkStack& S, int &e) {
+	if (isEmpty(S)) {
+		return false;
+	}
+
+	LNode* p = S;
+	S = S->next;
+	e = p->data;
+
+	return true;
+}
+
+void print(LinkStack S) {
+	int e;
+	while (pop(S,e))
+	{
+		printf("%d", e);
+	}
+}
+```
+
+
+
+## 队列
+
+### 定义
+
+![](./image/tmp5661.png)
+
+队列（Queue）是==只允许在一端进行插入，在另一端删除的线性表==
+
+队列的特点：==先进先出== First In First Out（==FIFO==）
