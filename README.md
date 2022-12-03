@@ -1137,3 +1137,6 @@ void print(LinkStack S) {
 队列（Queue）是==只允许在一端进行插入，在另一端删除的线性表==
 
 队列的特点：==先进先出== First In First Out（==FIFO==）
+
+
+
