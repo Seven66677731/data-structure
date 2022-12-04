@@ -1,3 +1,0 @@
-D:/Study/0/data-structure/data-structure/test/cmake-build-debug/CMakeFiles/test.dir
-D:/Study/0/data-structure/data-structure/test/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Study/0/data-structure/data-structure/test/cmake-build-debug/CMakeFiles/rebuild_cache.dir
