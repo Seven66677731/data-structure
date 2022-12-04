@@ -364,6 +364,14 @@ int locate(SqList L, int e) {
 
 
 ```c++
+写法一:
+typedef struct LNode LNode;
+typedef struct LNode *LinkList;
+struct LNode{
+    int data;
+    struct LNode *next;
+};
+写法二:
 typedef struct LNode {
 	int data;
 	int* next;
