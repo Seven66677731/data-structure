@@ -1008,7 +1008,7 @@ bool getTop(SqStcak S, int& e) {
 
 - 代码实现
 
-​		[顺序栈](./code/Stack/LinkStack/main.cpp)
+​		[链栈](./code/Stack/LinkStack/main.cpp)
 
 #### 定义
 
@@ -1128,6 +1128,161 @@ void print(LinkStack S) {
 
 
 
+### 应用
+
+#### [括号匹配](./code/Stack/BracketCheck/main.cpp)
+
+```c++
+#include <iostream>
+#include<cstdio>
+#include<cstdlib>
+#include <cstring>
+
+typedef struct LNode {
+    char data;
+    LNode *next;
+} *LinkStack;
+
+/*
+带头结点
+*/
+bool initLinkStack(LinkStack &S) {
+    S = (LNode *) malloc(sizeof(LNode));
+    if (S == NULL) {
+        return false;
+    }
+    S->next = NULL;
+    return true;
+}
+
+bool isEmpty(LinkStack S) {
+    return S->next == NULL;
+}
+
+bool push(LinkStack &S, char e) {
+    LNode *p = (LNode *) malloc(sizeof(LNode));
+    if (p == NULL) {
+        return false;
+    }
+    p->next = S->next;
+    p->data = e;
+    S->next = p;
+
+    return true;
+}
+
+
+bool pop(LinkStack &S, char &e) {
+    if (isEmpty(S)) {
+        return false;
+    }
+
+    LNode *p = S->next;
+    S->next = S->next->next;
+    e = p->data;
+    return true;
+}
+
+
+bool bracketCheck(char str[]) {
+    LinkStack S;
+    //初始化栈
+    initLinkStack(S);
+
+    for (int i = 0; i < strlen(str); ++i) {
+        char c = str[i];
+        if (c == '(') {
+            push(S, ')');
+        } else if (c == '{') {
+            push(S, '}');
+        } else if (c == '[') {
+            push(S, ']');
+        } else {
+            //忽略非括号
+            if (c == ')' || c == '}' || c == ']') {
+                //匹配到单独的右括号
+                if (isEmpty(S)) {
+                    return false;
+                }
+                char e;
+                pop(S, e);
+                //判断弹出元素的合法性
+                if (c != e) {
+                    return false;
+                }
+            }
+        }
+    }
+    //判断栈是否有剩余的左括号
+    return isEmpty(S);
+}
+
+int main() {
+    printf("%d", bracketCheck("[[(s)]]"));
+    return 0;
+}
+```
+
+
+
+#### 表达式求值
+
+![](./image/tmpD9F2.png)
+
+
+
+- 后缀表达式(逆波兰表达式 )
+
+​	==中缀转后缀==的手算方法： 
+
+​		① 确定中缀表达式中==各个运算符的运算顺序==
+
+​		② 选择下一个运算符，按照==「左操作数 右操作数 运算符」==的方式组合成一个新的操作数 
+
+​		③ 如果还有运算符没被处理，就继续 ②
+
+​		==“左优先”原则==：只要左边的运算符能先计算，就优先算==左边==的
+
+​		从左往右扫描，每遇到一个运算符，就让==运算符前面最近的两个操作数==	执行对应运算， ==合体为一个操作数==
+
+​		==先出栈的为右操作数==
+
+​	==用栈实现==后缀表达式的计算： 
+
+​		①从左往右扫描下一个元素，直到处理完所有元素 
+
+​		②若扫描到操作数则压入栈，并回到①；否则执行③ 
+
+​		③若扫描到运算符，则弹出两个栈顶元素，执行相应运算，运算结果压回栈顶，回到①
+
+​		==若表达式合法==， 则最后栈中==只会 留下一个元素==， 就是最终结果
+
+
+
+- 前缀表达式(波兰表达式)
+
+  ==中缀转前缀==的手算方法： 
+
+  ​	① 确定中缀表达式中==各个运算符的运算顺序==
+
+  ​	② 选择下一个运算符，按照==「运算符 左操作数 右操作数」==的方式组合成一个新的操作数 
+
+  ​	③ 如果还有运算符没被处理，就继续 ②
+
+  ==“右优先”原则==：只要右边的运算符能先计算，就优先算==右边==的
+
+  ==用栈实现==前缀表达式的计算： 
+
+  ​	①从右往左扫描下一个元素，直到处理完所有元素
+
+  ​	②若扫描到操作数则压入栈，并回到①；否则执行③ 
+
+  ​	③若扫描到运算符，则弹出两个栈顶元素，执行相应运算，运算结果压回栈顶，回到①
+
+
+
+
+
 ## 队列
 
 ### 定义
@@ -1140,3 +1295,172 @@ void print(LinkStack S) {
 
 
 
+### 顺序队列
+
+
+
+![](./image/tmp349F.png)
+
+#### 定义
+
+```c++
+typedef struct {
+    int data[maxSize];
+    int front, rear;
+} SqQueue;
+```
+
+
+
+#### 进队
+
+```c++
+bool enQueue(SqQueue &Q, int e) {
+	//队尾指针的下一个是否为队头指针
+    if ((Q.rear + 1) % maxSize == Q.front) {
+        return false;
+    }
+
+    Q.data[Q.rear] = e;
+    //循环队列实现入队
+    Q.rear = (Q.rear + 1) % maxSize;
+    return true;
+}
+```
+
+
+
+#### 出队
+
+```c++
+bool deQueue(SqQueue &Q, int &e) {
+    if (Q.front == Q.rear) {
+        return false;
+    }
+    e = Q.data[Q.front];
+    //循环队列实现出队
+    Q.front = (Q.front + 1) % maxSize;
+    return true;
+}
+```
+
+
+
+#### 获取队列长度
+
+公式：==(rear+maxSize-front)%maxSize==
+
+```c++
+int getLength(SqQueue Q){
+    return(Q.rear+maxSize-Q.front)%maxSize;
+}
+```
+
+
+
+### 链式队列
+
+![](./image/tmp7078.png)
+
+
+
+#### 定义
+
+```c++
+typedef struct LinkNode{
+    int data;
+    LinkNode* next;
+}LinkNode;
+
+typedef struct {
+    LinkNode* front,*rear;
+}LinkQueue;
+```
+
+
+
+#### 带头结点
+
+```c++
+/**
+ * 带头节点
+ * @return
+ */
+void initLinkQueue(LinkQueue &Q){
+    LinkNode* p = (LinkNode *) malloc(sizeof (LinkNode));
+    Q.front=Q.rear=p;
+    Q.front->next= NULL;
+}
+
+bool enQueue(LinkQueue &Q,int e){
+    LinkNode* p = (LinkNode *) malloc(sizeof (LinkNode));
+    p->data=e;
+    p->next=NULL;
+
+    Q.rear->next=p;
+    Q.rear=p;
+    return true;
+}
+
+bool deQueue(LinkQueue &Q,int &e){
+    if(Q.front->next==NULL){
+        return false;
+    }
+
+    e=Q.front->next->data;
+    Q.front=Q.front->next;
+    return true;
+}
+```
+
+
+
+
+
+#### 不带头结点
+
+```c++
+void initLinkQueue(LinkQueue &Q){
+    Q.front=Q.rear=NULL;
+}
+
+bool enQueue(LinkQueue &Q,int e){
+    LinkNode* p = (LinkNode *) malloc(sizeof (LinkNode));
+    p->data=e;
+    p->next=NULL;
+
+    //插入第一个结点
+    if(Q.front==NULL){
+        Q.rear=p;
+        Q.front=p;
+    }
+    //插入非第一结点
+    else{
+        Q.rear->next=p;
+        Q.rear=p;
+    }
+    return true;
+}
+
+bool deQueue(LinkQueue &Q,int &e){
+    if(Q.front==Q.rear){
+        return false;
+    }
+
+    e=Q.front->data;
+    Q.front=Q.front->next;
+    return true;
+}
+```
+
+
+
+### 双端队列
+
+![](./image/tmp9AA7.png)
+
+==双端队列==：只允许从==两端插入==、==两端删除==的线性表
+
+==输入受限==的双端队列：只允许==从一端插入==、==两端删除==的线性表
+
+==输出受限==的双端队列：只允许从==两端插入==、==一端删除==的线性表
