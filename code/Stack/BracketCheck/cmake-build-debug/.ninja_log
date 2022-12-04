@@ -1,0 +1,25 @@
+# ninja log v5
+1	440	6918602780683688	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+444	652	6918602782763361	BracketCheck.exe	a6f769209ead6833
+6	481	6918603197661205	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+482	686	6918603199681488	BracketCheck.exe	a6f769209ead6833
+5	417	6918607433117392	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+418	660	6918607435506248	BracketCheck.exe	a6f769209ead6833
+4	391	6918607635707478	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+392	585	6918607637605137	BracketCheck.exe	a6f769209ead6833
+5	450	6918607681772338	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+452	652	6918607683756211	BracketCheck.exe	a6f769209ead6833
+5	443	6918607759554003	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+444	634	6918607761419729	BracketCheck.exe	a6f769209ead6833
+5	418	6918607856366442	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+419	628	6918607858413935	BracketCheck.exe	a6f769209ead6833
+5	447	6918607914479254	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+449	646	6918607916441837	BracketCheck.exe	a6f769209ead6833
+4	414	6918608010749222	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+415	605	6918608012625565	BracketCheck.exe	a6f769209ead6833
+4	416	6918608745539976	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+418	613	6918608747474778	BracketCheck.exe	a6f769209ead6833
+4	417	6918608904509693	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+418	602	6918608906327176	BracketCheck.exe	a6f769209ead6833
+5	412	6918609027164466	CMakeFiles/BracketCheck.dir/main.cpp.obj	76d9d42988cb296d
+413	621	6918609029209906	BracketCheck.exe	a6f769209ead6833

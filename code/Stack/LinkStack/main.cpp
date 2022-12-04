@@ -105,6 +105,8 @@ void print(LinkStack S) {
 //	}
 //}
 
+
+
 int main(){
 	LinkStack S;
 
