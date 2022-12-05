@@ -1233,7 +1233,7 @@ int main() {
 
 
 
-#### 表达式求值
+#### [表达式求值](./code/Stack/ExpressionEvaluation/main.cpp)
 
 ![](./image/tmpD9F2.png)
 
@@ -1286,6 +1286,93 @@ int main() {
   ​	②若扫描到操作数则压入栈，并回到①；否则执行③ 
 
   ​	③若扫描到运算符，则弹出两个栈顶元素，执行相应运算，运算结果压回栈顶，回到①
+
+
+
+```c++
+/*
+计算结果
+*/
+char calc(char a, char b, char o) {
+    int x = a - '0';
+    int y = b - '0';
+    if (o == '+') {
+        return x + y;
+    } else if (o == '-') {
+        return x - y;
+    } else if (o == '*') {
+        return x * y;
+    } else if (o == '/') {
+        return x / y;
+    }
+}
+
+
+char getResult(char str[]) {
+    //数字栈
+    LinkStack A;
+    initLinkStack(A);
+    //运算符栈
+    LinkStack B;
+    initLinkStack(B);
+
+    char a, b, o, result;
+
+    for (int i = 0; i < strlen(str); ++i) {
+        char c = str[i];
+        //如果为数字则直接如数字栈
+        if (c >= '0' && c <= '9') {
+            push(A, c);
+        } else {
+            //如果为)则出运算符栈，直到出栈的为(
+            if (c == ')') {
+                while (pop(B, o)) {
+                    if (o == '(') {
+                        break;
+                    } else {
+                        pop(A, b);
+                        pop(A, a);
+                        result = calc(a, b, o);
+                        push(A, result + 48);
+                    }
+                }
+
+            } else {
+                //栈空，(，栈顶元素不为(,*/时栈顶元素不为*/ 以上情况均运算符栈
+                if (isEmpty(B) || getTop(B) == '(' || c == '(' || c == '*' || c == '/' && getTop(B) == '+' || getTop(B) == '-') {
+                    push(B, c);
+                } else {
+                    //不满足上述条件时
+                    //出一个运算符栈元素
+                    pop(B, o);
+
+                    //先出数字栈的元素为右操作数
+                    pop(A, b);
+                    //后出数字栈的元素为左操作数
+                    pop(A, a);
+                    //计算两个值的结果，并压回数字栈
+                    result = calc(a, b, o);
+                    push(A, result + 48);
+                    //操作符最后入操作符栈
+                    push(B, c);
+                }
+            }
+        }
+    }
+
+    //将操作符栈的元素全部出栈，并计算结果
+    while (pop(B, o)) {
+        pop(A, b);
+        pop(A, a);
+        result = calc(a, b, o);
+        push(A, result + 48);
+    }
+    pop(A, result);
+
+
+    return result - 48;
+}
+```
 
 
 

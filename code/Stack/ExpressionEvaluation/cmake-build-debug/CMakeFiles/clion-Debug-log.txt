@@ -1,4 +1,4 @@
-"D:\Programming\C\CLion 2022.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=D:/Programming/C/CLion 2022.3/bin/ninja/win/ninja.exe" -G Ninja -S D:\Study\0\data-structure\data-structure\code\Stack\ExpressionEvaluation -B D:\Study\0\data-structure\data-structure\code\Stack\ExpressionEvaluation\cmake-build-debug
+"D:\Programming\C\CLion 2022.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S D:\Study\0\data-structure\data-structure\code\Stack\ExpressionEvaluation -B D:\Study\0\data-structure\data-structure\code\Stack\ExpressionEvaluation\cmake-build-debug
 -- The C compiler identification is GNU 11.2.0
 -- The CXX compiler identification is GNU 11.2.0
 -- Detecting C compiler ABI info

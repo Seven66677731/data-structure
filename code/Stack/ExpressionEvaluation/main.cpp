@@ -1,173 +1,150 @@
-
-#include<stdlib.h>
-#include<stdio.h>
-
-#define Maxsize 10
-typedef struct node{
-    char data[Maxsize];
-    int top;
-} Stack;
-
-bool Isempty(Stack &s) {
-    if (s.top == -1) {
-        return true;
-    }
-    return false;
-}
-
-bool IsFull(Stack &s) {
-    if (s.top + 1 == Maxsize) {
-        return true;
-    }
-    return false;
-}
-
-void InitStack(Stack &s) {
-    s.top = -1;
-}
-
-bool PushStack(Stack &s, char data) {
-    if (IsFull(s)) {
-        return false;
-    }
-    s.data[++s.top] = data;
-    return true;
-}
-
-bool PopStack(Stack &s, char &data) {
-    if (Isempty(s)) {
-        return false;
-    }
-    data = s.data[s.top--];
-    return true;
-}
-
-bool GetTop(Stack &s, char &data) {
-    if (Isempty(s)) {
-        return false;
-    }
-    data = s.data[s.top];
-    return true;
-}
-
-int length(char str[]) {
-    int length = 0;
-    while (str[length] != '\0') {
-        length++;
-    }
-    return length;
-}
-
-bool IsNumber(char a) {
-    if (a >= '0' && a <= '9') {
-        return true;
-    }
-    return false;
-}
-
-void change(Stack &s, char str[], char last[]) {
-    int len = length(str);
-    int flag = -1;
-    char data;
-    for (int i = 0; i < len; i++) {
-        /*
-        如果是数字，直接拿出来，不做任何处理
-        */
-        if (IsNumber(str[i])) {
-            flag++;
-            last[flag] = str[i];
-        }
-            /*
-            加减运算符优先级最低，如果栈顶元素为空则直接⼊栈，否则将栈中存储的运算符全部弹栈，
-            如果遇到左括号则停⽌，将弹出的左括号从新压栈，因为左括号要和⼜括号匹配时弹出，
-            这个后⾯单独讨论。弹出后将优先级低的运算符压⼊栈中
-            */
-        else if (str[i] == '+' || str[i] == '-') {
-            if (Isempty(s)) {
-                PushStack(s, str[i]);
-            } else {
-                while (!Isempty(s) && s.data[s.top] != '(') {
-                    PopStack(s, data);
-                    flag++;
-                    last[flag] = data;
-                }
-                PushStack(s, str[i]);
-            }
-        }
-        /*
-        乘、除、左括号都是优先级⾼的，直接压栈
-        */
-        else if (str[i]== '(' || str[i] == '*' || str[i] == '/') {
-            PushStack(s, str[i]);
-        }
-        /*
-        当遇到右括号是，把括号⾥剩余的运算符弹出，直到匹配到左括号为⽌
-        左括号只弹出不打印（右括号也不压栈）
-        */
-        else if (str[i]== ')') {
-            PopStack(s, data);
-            while (data != '(') {flag++;last[flag] =data;
-                PopStack(s, data);
-            }
-        }
-    }
-/*
-最后把栈中剩余的运算符依次弹栈
+/**
+ * 中缀表达式转后缀表达式求值
  */
-    while (!Isempty(s)) {
-        PopStack(s, data);
-        flag++;
-        last[flag] = data;
+
+#include<stdio.h>
+#include<stdlib.h>
+#include <cstring>
+
+/*
+带头结点
+*/
+typedef struct LNode {
+    char data;
+    LNode *next;
+} *LinkStack;
+
+bool initLinkStack(LinkStack &S) {
+    S = (LNode *) malloc(sizeof(LNode));
+    if (S == NULL) {
+        return false;
     }
-    last[++flag] = '\0';
+    S->next = NULL;
+    return true;
 }
 
-bool lastnum(Stack &s, char str[], char &data) {
-    int len = length(str);
-    char a, b, c;
-    int x, y;
-    for (int i = 0; i < len; i++) {
-        if (IsNumber(str[i])) {
-            PushStack(s, str[i]);
+bool isEmpty(LinkStack S) {
+    return S->next == NULL;
+}
+
+bool push(LinkStack &S, char e) {
+    LNode *p = (LNode *) malloc(sizeof(LNode));
+    if (p == NULL) {
+        return false;
+    }
+    p->next = S->next;
+    p->data = e;
+    S->next = p;
+
+    return true;
+}
+
+
+bool pop(LinkStack &S, char &e) {
+    if (isEmpty(S)) {
+        return false;
+    }
+
+    LNode *p = S->next;
+
+    S->next = S->next->next;
+    e = p->data;
+
+    return true;
+}
+
+
+
+char getTop(LinkStack S) {
+    return S->next->data;
+}
+
+/*
+计算结果
+*/
+char calc(char a, char b, char o) {
+    int x = a - '0';
+    int y = b - '0';
+    if (o == '+') {
+        return x + y;
+    } else if (o == '-') {
+        return x - y;
+    } else if (o == '*') {
+        return x * y;
+    } else if (o == '/') {
+        return x / y;
+    }
+}
+
+
+char getResult(char str[]) {
+    //数字栈
+    LinkStack A;
+    initLinkStack(A);
+    //运算符栈
+    LinkStack B;
+    initLinkStack(B);
+
+    char a, b, o, result;
+
+    for (int i = 0; i < strlen(str); ++i) {
+        char c = str[i];
+        //如果为数字则直接如数字栈
+        if (c >= '0' && c <= '9') {
+            push(A, c);
         } else {
-            PopStack(s, b);
-            PopStack(s, a);
-            if (str[i] == '+') {
-                x = a - '0';
-                y = b - '0';
-                x = x + y;
-            } else if (str[i]== '-') {
-                x = a - '0';
-                y = b - '0';
-                x = x - y;
-            } else if (str[i] == '*') {
-                x = a - '0';
-                y = b - '0';
-                x = x * y;
-            } else if (str[i]== '/') {
-                x = a - '0';
-                y = b - '0';
-                x = x / y;
+            //如果为)则出运算符栈，直到出栈的为(
+            if (c == ')') {
+                while (pop(B, o)) {
+                    if (o == '(') {
+                        break;
+                    } else {
+                        pop(A, b);
+                        pop(A, a);
+                        result = calc(a, b, o);
+                        push(A, result + 48);
+                    }
+                }
+
+            } else {
+                //栈空，(，栈顶元素不为(,*/时栈顶元素不为*/ 以上情况均运算符栈
+                if (isEmpty(B) || getTop(B) == '(' || c == '(' || c == '*' || c == '/' && getTop(B) == '+' ||
+                    getTop(B) == '-') {
+
+                    push(B, c);
+
+                } else {
+                    //不满足上述条件时
+                    //出一个运算符栈元素
+                    pop(B, o);
+
+                    //先出数字栈的元素为右操作数
+                    pop(A, b);
+                    //后出数字栈的元素为左操作数
+                    pop(A, a);
+                    //计算两个值的结果，并压回数字栈
+                    result = calc(a, b, o);
+                    push(A, result + 48);
+                    //操作符最后入操作符栈
+                    push(B, c);
+                }
             }
-            c = x + 48;
-            PushStack(s, c
-            );
         }
     }
-    PopStack(s, data);
-}
 
+    //将操作符栈的元素全部出栈，并计算结果
+    while (pop(B, o)) {
+        pop(A, b);
+        pop(A, a);
+        result = calc(a, b, o);
+        push(A, result + 48);
+    }
+    pop(A, result);
+
+
+    return result - 48;
+}
 
 int main() {
-    Stack s;
-    InitStack(s);
-    char data;
-    char str[] = "(1+2)*3";
-    int len = length(str);
-    char last[] = "";
-    change(s, str, last);
-    lastnum(s, last, data);
-    int zdk = data - '0';
-
-    printf("%d", zdk);
+    printf("%d", getResult("(2-1*2)+3*8/4"));
 }

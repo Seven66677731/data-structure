@@ -1,0 +1,3 @@
+"D:\Programming\C\CLion 2022.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\ExpressionEvaluation_.dir/objects.a
+D:\PROGRA~1\C\CLION2~1.3\bin\mingw\bin\ar.exe qc CMakeFiles\ExpressionEvaluation_.dir/objects.a @CMakeFiles\ExpressionEvaluation_.dir\objects1.rsp
+D:\PROGRA~1\C\CLION2~1.3\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\ExpressionEvaluation_.dir/objects.a -Wl,--no-whole-archive -o ExpressionEvaluation_.exe -Wl,--out-implib,libExpressionEvaluation_.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\ExpressionEvaluation_.dir\linklibs.rsp
