@@ -1646,3 +1646,196 @@ i ≤ (k+1)/3+1 可以理解为“刚好”小于等于
 ![](./image/tmp1CFD.png)
 
 ![](./image/tmpD36E.png)
+
+
+
+# 四、串
+
+## [定义](./课件/04.22数据结构课件第4章/4.1_1_串的定义和基本操作.pdf)
+
+![](./image/tmpFE75.png)
+
+==串==，即==字符串==（String）是由零个或多个字符组成的有限序列。一般记为 
+
+S = ‘a1a2······an' （n ≥0） 
+
+其中，==S==是==串名==，单引号括起来的字符序列是串的值；ai 可以是字母、数字或其他字符；串 中字符的个数n称为==串的长度==。n = 0时的串称为==空串==（用∅表示）。
+
+==子串==：串中任意个==连续==的字符组成的子序列。
+
+主串：包含子串的串。
+
+字符在主串中的位置：字符在串中的序号。 
+
+子串的第一个字符在主串中的位置 。
+
+
+
+### 串的顺序存储
+
+```c++
+/*
+静态数组实现
+*/
+#define maxSize 255
+typedef struct{
+    char ch[maxSize];
+    int length;
+}SString;
+
+
+/*
+动态数组实现
+*/
+
+typedef struct{
+    char *ch;
+    int length;
+}HString;
+```
+
+![](./image/tmpFC9E.png)
+
+
+
+### 串的链式存储
+
+```c++
+typedef struct StringNode{
+    char ch[4];
+    int *StringNode;
+}StringNode,*StringNode;
+```
+
+![](./image/tmp1FDA.png)
+
+
+
+## [操作](./课件/04.22数据结构课件第4章/4.1_2_串的存储结构.pdf)
+
+### 求子串
+
+```c++
+bool subString(SString &sub, SString S, int pos, int len) {
+    if (pos + len - 1 > S.length) {
+        return false;
+    }
+
+    for (int i = pos; i < pos + len; i++) {
+        sub.ch[i - pos + 1] = S.ch[i];
+    }
+    sub.length = len;
+    return true;
+
+}
+```
+
+
+
+### 比较操作
+
+```c++
+int strCompare(SString S, SString T) {
+    for (int i = 0; i < S.length && T.length; ++i) {
+        if (S.ch[i] != T.ch[i]) {
+            return S.ch[i] - T.ch[i];
+        }
+    }
+    return S.length - T.length;
+}
+```
+
+
+
+### 定位操作
+
+```c++
+int index(SString S, SString T) {
+    int i = 1, n = strLength(S), m = strLength(T);
+    SString sub;
+    initSString(sub);
+    while (i <= n - m + 1) {
+        subString(sub, S, i, m);
+        if (strCompare(sub, T) != 0) {
+            ++i;
+        } else {
+            return i;
+        }
+    }
+    return 0;
+}
+```
+
+
+
+## [朴素模式匹配算法](./课件/04.22数据结构课件第4章/4.2_1_朴素模式匹配算法.key.pdf)
+
+![](./image/tmpD7DF.png)
+
+```c++
+/**
+ * 朴素模式
+ */
+int index(SString S, SString T) {
+    int i = 1, j = 1;
+    while (i <= S.length && j <= T.length) {
+        if (S.ch[i] == T.ch[j]) {
+            ++i;
+            ++j;
+        } else {
+            i = i - j + 2;
+            j = 1;
+        }
+        if (j > T.length) {
+            return i - T.length;
+        }
+    }
+    return 0;
+}
+```
+
+最坏时间复杂度 = ==O(nm)== 
+
+最好时间复杂度 = ==O(n)==
+
+
+
+## [KMP算法](./课件/04.22数据结构课件第4章/4.2_3_求next数组.pdf)
+
+```c++
+/**
+ * KMP算法
+ */
+int indexKMP(SString S, SString T,int next[]){
+    int i=1,j=1;
+    while (i<=S.length&&j<=T.length){
+        if(j==0||S.ch[i]==T.ch[j]){
+            ++i;
+            ++j;
+        } else{
+            j=next[j];
+        }
+    }
+    if(j>T.length){
+        return i-T.length;
+    } else{
+        return 0;
+    }
+}
+```
+
+最坏时间复杂度 ==O(m+n)==
+
+ 其中，求 next 数组时间复杂度 O(m)
+
+ 模式匹配过程最坏时间复杂度 O(n)
+
+
+
+next数组
+
+==next[1]==都⽆脑写 0 
+
+==next[2]==都⽆脑写 1  
+
+==其他next==：在不匹配的位置前，划⼀根美丽的分界线 模式串⼀步⼀步往后退，直到分界线之前“能对上”，或模式串 完全跨过分界线为⽌。此时 j 指向哪⼉，next数组值就是多少
