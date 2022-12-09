@@ -2036,3 +2036,138 @@ next数组
   若完全二叉树有2k个==偶数==个结点，则必有 ==n1=1， n0 = k， n2 = k-1==
 
   若完全二叉树有2k-1个==奇数==个结点，则必有 ==n1=0， n0 = k， n2 = k-1==
+
+
+
+### [存储](./课件/05.22数据结构课件第5章/5.2_3_二叉树的存储结构.pdf)
+
+#### 顺序存储
+
+定义一个长度为 MaxSize 的数组 t ，按照 从上至下、从左至右的顺序依次存储==完全二叉树==中的各个结点
+
+```c++
+#define MaxSize 100
+struct TreeNode{
+	ElemType value;  //结点中的数据元素
+	bool isEmpty;  //结点是否为空
+} 
+```
+
+#### 链式存储
+
+```c++
+typedef struct BiTNode {
+    ElemType data;
+    BiTNode *l, *r;
+} BiTNode, *BiTree;
+
+//创建二叉树
+void createTree(BiTree &T) {
+    char c;
+    c = getchar();
+    if (c == '#') {
+        T = NULL;
+    } else {
+        T = (BiTNode *) malloc(sizeof(BiTNode));
+        T->data = c;
+        createTree(T->l);
+        createTree(T->r);
+    }
+}
+```
+
+
+
+
+
+### [遍历](./课件/05.22数据结构课件第5章/5.3_1_二叉树的先中后序遍历.pdf)
+
+![](./image/tmp9782.png)
+
+
+
+#### 先，中，后遍历
+
+```c++
+//先序遍历 O(h) h为树的高度
+void preOrder(BiTree t) {
+    if (t != NULL) {
+        visit(t);
+        preOrder(t->l);
+        preOrder(t->r);
+    }
+}
+
+//中序遍历 O(h) h为树的高度
+void inOrder(BiTree t) {
+    if (t != NULL) {
+        preOrder(t->l);
+        visit(t);
+        preOrder(t->r);
+    }
+}
+
+//后序遍历 O(h) h为树的高度
+void postOrder(BiTree t) {
+    if (t != NULL) {
+        preOrder(t->l);
+        preOrder(t->r);
+        visit(t);
+    }
+}
+```
+
+#### 求树的高度
+
+```c++
+//求树的高度
+int treeDepth(BiTree t) {
+    if (t == NULL) {
+        return 0;
+    } else {
+        int l = treeDepth(t->l);
+        int r = treeDepth(t->r);
+        return l > r ? l + 1 : r + 1;
+    }
+}
+```
+
+#### 层次遍历
+
+树的层次遍历算法思想：
+
+1. 初始化一个==辅助队列==
+2. 根结点入队
+3. 若队列非空，则队头结点出队，访问该结点，并将其左、右孩子插入队尾（如果有的话）
+4. 重复3直至队列为空
+
+```c++
+//层次遍历
+void levelOrder(BiTree T) {
+    //辅助队列
+    LinkQueue Q;
+    initLinkQueue(Q);
+    BiTree p;
+    //根节点入队
+    enQueue(Q, T);
+    //队列不为空则循环，对头结点出队
+    while (deQueue(Q, p)) {
+        //访问出队结点
+        visit(p);
+        //左孩子不为空则左孩子入队
+        if (p->l != NULL) {
+            enQueue(Q, p->l);
+        }
+        //右孩子不为空则左孩子入队
+        if (p->r != NULL) {
+            enQueue(Q, p->r);
+        }
+    }
+}
+```
+
+
+
+#### 由遍历构建二叉树
+
+![](./image/tmp2017.png)
