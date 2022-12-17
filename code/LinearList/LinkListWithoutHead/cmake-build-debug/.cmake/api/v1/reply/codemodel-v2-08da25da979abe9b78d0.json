@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/Study/0/data-structure/data-structure/new/LinearList/LinkListWithoutHead/cmake-build-debug",
-		"source" : "D:/Study/0/data-structure/data-structure/new/LinearList/LinkListWithoutHead"
+		"build" : "F:/datastruct/data-structure/code/LinearList/LinkListWithoutHead/cmake-build-debug",
+		"source" : "F:/datastruct/data-structure/code/LinearList/LinkListWithoutHead"
 	},
 	"version" : 
 	{

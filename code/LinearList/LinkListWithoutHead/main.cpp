@@ -81,8 +81,8 @@ bool deleteList(LinkList& L, int i, int& e) {
 	if (i == 1) {
 		LNode* q = L;
 		e = q->data;
-		q->next = L->next;
-		free(L);
+		L = L->next;
+		free(q);
 		return true;
 	}
 	LNode* p = L;
@@ -215,7 +215,9 @@ int main() {
 
 	//L=listHeadInsert(L);
 	print(L);
-	L = reserve(L);
+    int e = 0;
+    deleteList(L,1,e);
+//	L = reserve(L);
 	print(L);
 
 	return 0;

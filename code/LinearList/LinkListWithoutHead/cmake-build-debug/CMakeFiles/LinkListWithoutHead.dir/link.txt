@@ -1,0 +1,3 @@
+D:\Software\CLion\bin\cmake\win\bin\cmake.exe -E rm -f CMakeFiles\LinkListWithoutHead.dir/objects.a
+D:\Software\CLion\bin\mingw\bin\ar.exe qc CMakeFiles\LinkListWithoutHead.dir/objects.a @CMakeFiles\LinkListWithoutHead.dir\objects1.rsp
+D:\Software\CLion\bin\mingw\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\LinkListWithoutHead.dir/objects.a -Wl,--no-whole-archive -o LinkListWithoutHead.exe -Wl,--out-implib,libLinkListWithoutHead.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\LinkListWithoutHead.dir\linklibs.rsp

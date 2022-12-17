@@ -1225,6 +1225,38 @@ bool bracketCheck(char str[]) {
     return isEmpty(S);
 }
 
+//使用数组和一个top指针的括号匹配
+bool newBracketCheck(char str[], int length) {
+    //初始化一个数组和一个top指针
+    char data[10];
+    int top = -1;
+
+    //遍历str
+    for (int i = 0; i < length; i++) {
+        //当其为左括号时，放入数组中
+        if (str[i] == *"{" || str[i] == *"(" || str[i] == *"[") {
+            data[top++] = str[i];
+        } else {
+            //当为右括号且数组为空时，返回false
+            if (top == -1) {
+                return false;
+            }
+            //取出数组最后一个元素，与右括号进行对比
+            char topElem = data[--top];
+            if (str[i] == *"}" && topElem != *"{") {
+                return false;
+            }
+            if (str[i] == *")" && topElem != *"(") {
+                return false;
+            }
+            if (str[i] == *"]" && topElem != *"[") {
+                return false;
+            }
+        }
+    }
+    return top == -1;
+}
+
 int main() {
     printf("%d", bracketCheck("[[(s)]]"));
     return 0;
